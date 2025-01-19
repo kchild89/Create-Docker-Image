@@ -36,5 +36,5 @@ This project is an Express.js API server for a fictional collectible card game. 
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone git@github.com:kchild89/API-Server-Project.git
    ```
