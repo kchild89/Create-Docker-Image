@@ -18,8 +18,10 @@
   "homepage": "https://github.com/kchild89/API-Server-Project#readme",
   "description": "",
   "dependencies": {
+    "body-parser": "^1.20.3",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "fs": "^0.0.1-security",
     "init": "^0.1.2",
     "jsonwebtoken": "^9.0.2",
     "npm": "^11.0.0"
