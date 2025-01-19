@@ -6,17 +6,34 @@ const router = express.Router();
 const SECRET = process.env.JWT_SECRET;
 
 router.post("/getToken", (req, res) => {
-  const { username, password } = req.body;
-  const users = JSON.parse(fs.readFileSync("./data/users.json", "utf-8"));
+  try {
+    const { username, password } = req.body;
 
-  const user = users.find((u) => u.username === username);
+    const usersData = JSON.parse(fs.readFileSync("./data/users.json", "utf-8"));
+    const users = usersData.users;
 
-  if (!user || !bcrypt.compareSync(password, user.password)) {
-    return res.status(401).json({ errorMessage: "Invalid credentials" });
+    if (!Array.isArray(users)) {
+      return res
+        .status(500)
+        .json({ errorMessage: "Invalid users data format" });
+    }
+
+    const user = users.find((u) => u.username === username);
+    if (!user) {
+      return res.status(401).json({ errorMessage: "Invalid credentials" });
+    }
+
+    const isPasswordValid = bcrypt.compareSync(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ errorMessage: "Invalid credentials" });
+    }
+
+    const token = jwt.sign({ username }, SECRET, { expiresIn: "1h" });
+    res.json({ token });
+  } catch (err) {
+    console.error("Error in /getToken:", err);
+    res.status(500).json({ errorMessage: "An unexpected error occurred" });
   }
-
-  const token = jwt.sign({ username }, SECRET, { expiresIn: "1h" });
-  res.json({ token });
 });
 
 module.exports = router;
