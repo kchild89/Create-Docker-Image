@@ -1,0 +1,27 @@
+{
+  "name": "api-server-project",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kchild89/API-Server-Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kchild89/API-Server-Project/issues"
+  },
+  "homepage": "https://github.com/kchild89/API-Server-Project#readme",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "init": "^0.1.2",
+    "jsonwebtoken": "^9.0.2",
+    "npm": "^11.0.0"
+  }
+}
